@@ -1,0 +1,248 @@
+<!-- Created by Sandy ✔-->
+
+<!DOCTYPE html>
+<!-- THIS APP WAS MADE BY Sandy 2017 ....
+EMAIL: sandeepsingh.nita@gmail.com
+AIM: TO MAKE MATHEMATICAL CALCULATION EASIER.INBOX FOR ENQUIRIES
+EACH CODE ARE PROPERLY COMMENTED AND EXPLAINED ANYWAY...-------->
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <title>iCalculator</title>
+        <link rel="icon" type="image/ico" href="https://i5.walmartimages.com/asr/0c985896-5b2a-48fa-b8f4-c2a6f410cc8d_1.740e1bf69fceabe3b982e74d14e38456.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF" />
+        <script src="jquery-3.3.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+            <style>
+                    body { background-image: url("https://i.pinimg.com/originals/d7/bd/bf/d7bdbf9526e6967af5b40ad11069db82.jpg"); background-size: cover; background-repeat:no-repeat; }
+                    body, html { height: 100%; margin:auto;}
+                    button { background-color: green ; color: yellow ; box-shadow: 0px ; border: none ; float: right; height: 0.7cm; }
+                    #colorChanger { float: left; box-shadow:0px; }
+                    #changeBGtext { float:left; }
+                    .foxbackground{ background-image: url("https://i.pinimg.com/originals/54/7a/9c/547a9cc6b93e10261f1dd8a8af474e03.jpg"); background-size: cover; background-repeat:no-repeat; height: 100%; }
+                    #sdate{ border-right: 2px solid red;}
+                    .output{ width: 340px ; height: 1.4cm ; border: none ; font-size: 29px ; background: none; color: black ; }
+                    #outpi{width: 340px ; height: 0.5cm ; border: none ; font-size: 25px ; background: none; color: black ; text-align:right; color:green; animation:stippit 1s linear infinite;}
+                    input{ height: 2cm ; width: 84px ; border: none ; background: none ; font-size: 29px ; color: yellow ;  }
+                    input:hover{ animation:spinnit 1s linear infinite; }
+                    #element{height:1cm ; width: 69px ; float:left; border-radius:30px; animation:loadit 2s linear infinite;}
+                    #frontButton{ height: 0.5cm; font-size: 16px ;}
+                    @keyframes spinnit{ 0%{font-size: 40px; color:red; box-shadow:0px; outline:none; border:none;}100%{font-size: 40px; color:red; box-shadow:opx; outline:none; border:none;}}
+                    @keyframes stippit{ 0%{font-size:25px;}100%{font-size:25px;} }
+                    @keyframes loadit{ 0%{transform:rotate(0deg); color:red;} 100%{transform:rotate(360deg); color:orange;} }
+            </style>
+    </head>
+    
+<!-- The HEAD TAG STOP HERE, THE STYLING IS ALREADY INCLUDED IN THE TAG.. NOW THE BODY WILL START -->
+
+<body onload="onLoat()">
+
+    <button onclick="changeBackground()" id="themes">changeThemes</button>
+    <button id="sdate">Show time</button><br/><br/>
+
+<center>
+
+                <div class="element">
+                    <p id="headr" style="color:red;"></p>
+                    <input type="text" id="outpu" class="output"   style="color:red;"><br>
+                    <input type="text" id="outpi" class="output"  readonly style="color:green;"><br>
+                </div>
+
+                <div class="first" style="display:block" id="pol">
+                
+                    <input type="button" value='%' onclick="perCentage()" style="background-color:red" id="frontButton"><input id="frontButton" type="button" value='ANS' onclick="ans()" style="background-color:red"><input id="frontButton" type="button" value="DEL" onclick="del()" style="background-color:red"><input id="frontButton" type="button" value='AC' onclick="ac()" style="background-color:orange"><br />
+                    <input type="button" value="7" onclick="insert(7)"><input type="button" value="8" onclick="insert(8)"><input type="button" value="9" onclick="insert(9)"><input type="button" value="/" onclick="insert('/')"><br />
+                    <input type="button" value="4" onclick="insert(4)"><input type="button" value="5" onclick="insert(5)"><input type="button" value="6" onclick="insert(6)"><input type="button" value="" onclick="insert('')"><br />
+                    <input type="button" value="1" onclick="insert(1)"><input type="button" value="2" onclick="insert(2)"><input type="button" value="3" onclick="insert(3)"><input type="button" value="-" onclick="insert('-')"><br />
+                    <input type="button" value="." onclick="insert('.')"><input type="button" value="0" onclick="insert(0)"><input type="button" value="=" onclick="equal()"><input type="button" value="+" onclick="insert('+')">
+
+                </div>
+    <input  id= "element" type="button" value='->' onclick="togle()" style="background-color:green" class="toglee"><br />
+    
+                <div style="display:none;" id="lop">
+                    <input type="button" value="sin" onclick="sine()"><input type="button" value="floor" onclick="rinddown()"><input type="button" value="ceil" onclick="rindup()"><br>
+                    <input type="button" value="cos" onclick="cosi()"><input type="button" value="log" onclick="alert('this function is disabled by developer')" disabled><input type="button" value="x2" onclick="swuare()" ><br>
+                    <input type="button" value="tan" onclick="tani()" ><input type="button" value="EXP" onclick="exponent();"><input type="button" value='π' onclick="insert(Math.PI)"><br>
+                    <input type="button" value="√" onclick="squaft()" ><input type="button" value="e" onclick="insert(2.71828182846)"><br>
+                    <p class="csoon" style="color:red;">The disabled buttons are <span style="color:yellow;">COMMING SOON!</span></p>
+</div>
+
+
+<script>
+ // script for background changing
+var dateButton = document.getElementById("sdate"); //datebutton
+var ouput = document.getElementById("outpu");  // Output for calculators
+var answerSect = document.getElementById("outpi"); // then answer display sector
+var vibr ;
+var p = document.getElementById("headr");
+var l = navigator.onLine ;
+
+
+function changeBackground(){ // for backgroung toggling
+var navigate = navigator.onLine ;
+document.body.classList.toggle("foxbackground", "deadpool");
+if(navigate == false){ alert("please enable internet access to use this feature"); }
+}
+
+dateButton.onclick = function(){ // displaying the date when the show time button is clicked
+var x = new Date();
+var a = x.getHours() ;
+var b = x.getMinutes() ;
+
+dateButton.innerHTML = a + ":" + b ;
+}
+
+function onLoat(){ // this function is run @body onload event
+greetings();
+changeBackgroundoffline();
+}
+
+function greetings(){ // the greeting at the top of calculator
+var x = new Date();
+var a = x.getHours() ;
+var b = x.getMinutes() ;
+
+if(a >= 4 && a < 12) { p.innerHTML = "GOOD MORNING" ; }
+else if (a >=12 && a < 4){ p.innerHTML = "GOOD AFTERNOON" ; }
+else { p.innerHTML = "GOOD EVENING" ; }
+}
+
+function changeBackgroundoffline(){ // this check if the internet is on to update calculator background or not
+var navigate = navigator.onLine;
+if (navigate == false){ document.body.style.backgroundColor = "navy"; }
+}
+
+//////////////////////////////////// CALCULATING FUNCTIONS..........
+
+
+function insert(num){ // THIS IS THE FUNCTION CALLED AT EACH INPUT TO OUTPUT OR DISPLAY THEIR TAGGED VALUE ON THE SCREEN
+var outpuy = document.getElementById("outpu");
+outpuy.value = outpuy.value + num ;
+}
+
+
+function equal(){ // EQUAL TO FUNCTION ..... EVAL THE CURRENT OUTPUT PARAMETERS
+var outpuy = document.getElementById("outpu");
+var anferw = eval(outpuy.value);
+answerSect.value = anferw ;
+outpuy.style.color = "red" ;
+answerSect.style.color = "green";
+vibr;
+if(outpuy.value === "") { answerSect.value = "i don't solve simple task" ; }
+else if (answerSect.value === "Infinity") { p.innerHTML = "maximum value attained" ; }
+}
+
+function ac(){ // THE SWITCH FUNCTION THIS IS 
+var outpuy = document.getElementById("outpu");
+outpuy.value = "" ;
+answerSect.value = "" ;
+
+}
+function perCentage(){ //............ THIS IS THE PERCENTAGE FUNCTION
+var outpuy = document.getElementById("outpu");
+answerSect.value = outpuy.value / 100 ;
+}
+
+function del(){ // delete
+var outpuy = document.getElementById("outpu");
+var res = outpuy.value.substring(0, outpuy.value.length - 1) ;
+outpuy.value = res ;
+}
+
+
+function togle(){ // ...............THE GREEN TOGGLE BUTTON AT THE END OF THE CALCULATOR HAVING 'MORE' ARROW
+var fir = document.getElementById("pol");
+var firr = document.getElementById("lop");
+var firrr = document.getElementById("foote");
+
+if (fir.style.display === "block")
+{ firr.style.display = "block";
+  fir.style.display = "none"; 
+  firrr.style.display = "none" ;}
+ else { fir.style.display = "block" ; 
+ firr.style.display = "none" ; 
+   firrr.style.display = "block" ;}
+}
+
+function exponent(){ ///      LARGE E
+ insert('E'); // THIS WILL DISPALY THE 'E' IN THE OUTPUT COS OF THE FUNCTION( NUM ) AT THE BEGINING OF THE SCRIPT
+ raisepower(); //// THIS FUNCTION IS THE EXP BELOW TO MAKE THE CURRENT INPUT VALUE RAISE TO POWER THE OUTER VALUE ;
+}
+function raisepower(){ // ............. FOR THE EXP 
+var outpuy = document.getElementById("outpu");
+Math.exp(outpuy.value);
+}
+
+function rinddown(){ // ....................ROUNDING DOWN
+var outpuy = document.getElementById("outpu");
+var toRound = Math.floor(outpuy.value);
+answerSect.value = toRound;
+}
+function rindup(){            //  .......................... ROUNDING UP
+var outpuy = document.getElementById("outpu");
+var toRound = Math.ceil(outpuy.value);
+answerSect.value = toRound;
+}
+function squaft(){ // for squre root
+var outpuy = document.getElementById("outpu");
+outpuy.value = Math.sqrt(outpuy.value);
+}
+
+function swuare(){ // for square
+var outpuy = document.getElementById("outpu");
+var ans = outpuy.value * 2 ;
+answerSect.value = ans ;
+}
+
+function ans() { // answer button.
+var outpuy = document.getElementById("outpu");
+var answeValue = answerSect.value ;
+outpuy.value = outpuy.value + answeValue ;
+}
+
+function sine(){ // for sine
+var outpuy = document.getElementById("outpu");
+var inDegree = Math.sin(outpuy.value * Math.PI / 180);
+answerSect.value = inDegree + "rad" ; 
+p.innerHTML = "The below answer is in radian, use the value * 180 / math.pi for degree conversion \n or hit the developer on his facebook @java scriptp to get a link of radian converter app"
+}
+function cosi(){ // for cos
+var outpuy = document.getElementById("outpu");
+var inDegree = Math.cos(outpuy.value * Math.PI / 180);
+answerSect.value = inDegree + "rad" ;
+p.innerHTML = "The below answer is in radian, use the value * 180 / math.pi for degree conversion \n or hit the developer on his facebook @java scriptp to get a link of radian converter app"
+}
+function tani(){ // for tan
+var outpuy = document.getElementById("outpu");
+var inDegree = Math.tan(outpuy.value * Math.PI / 180);
+answerSect.value = inDegree + "rad" ;
+p.innerHTML = "The below answer is in radian, use the value * 180 / math.pi for degree conversion \n or hit the developer on his facebook @java scriptp to get a link of radian converter app"
+}
+
+function logi(){ // for log
+var outpuy = document.getElementById("outpu");
+var x = Math.log(outpuy.value);
+answerSect.value = x ;
+}
+function toaler(){
+var x = navigator.offLine ;
+if (x = true){
+alert("owned by java scriptp"); }
+}
+
+
+</script>
+
+
+
+
+</center>
+
+
+
+
+<body>
+</html>
